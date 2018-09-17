@@ -3,10 +3,11 @@ document.addEventListener('DOMContentLoaded',() => {
   let gridArray = [];
   let removed = [];
   let timer = 0;
-  let songCount = 0;
+  let songCount = 3;
   let songName = '';
+  let songMax = 5;
+  let scores = [];
   let dispSong = parseInt(songCount) + 1;
-  const songMax = 5;
   let songArray = [
     ["Adele","rolling in the deep","images/adele21.png","Adele.mp3"],
     ["George Ezra","shotgun","images/shotgun.jpeg","Ezra.mp3"],
@@ -20,15 +21,16 @@ document.addEventListener('DOMContentLoaded',() => {
     // ["Adele","Rolling In The Deep","images/adele21.png","Adele.mp3"],
   ];
   let score = 0;
+
   const imageGrid = new Object();
+  const leaderboard = new Object();
 
   imageGrid.guessBtn = document.getElementById('guessBtn');
-
-
   imageGrid.nextSong = () => {
     $('.row').remove();
     gridArray = [];
     removed = [];
+    console.log('Next Song');
     clearInterval(timer);
     imageGrid.populate();
   }
@@ -101,19 +103,56 @@ document.addEventListener('DOMContentLoaded',() => {
       console.log('Incorrect!');
     }
     if (songCount === songMax){
-      alert(`You Scored ${score}`);
-      setTimeout(function(){
-        window.location.replace('index.html');
-      }, 3000);
-    } else {
+      console.log(score);
+      const name = prompt('Enter Your Name');
+      localStorage.setItem(name,score);
+    }
     setTimeout(function(){
       imageGrid.nextSong();
     }, 1000);
   }
-}
 
-  imageGrid.populate();
-  imageGrid.guessBtn.addEventListener('click',(e) => {
-    imageGrid.checkAnswer();
-  });
+  // Sorts array by score value and prints out to Leaderboard
+
+  leaderboard.getScores = () => {
+    console.log('working');
+    for (var i = 0; i < localStorage.length; i++){
+      var key = localStorage.key(i);
+      var value = localStorage[key];
+      var keypair = [];
+      keypair.push(key);
+      keypair.push(value);
+      scores.push(keypair);
+    }
+    console.log(scores);
+  }
+
+  leaderboard.printScores = () => {
+    leaderboard.getScores();
+    scores.sort(function(a,b){
+      if (a[1] < b[1]){
+        return 1;
+      } else if (a[1] > b[1]) {
+        return -1;
+      } else{
+        return 0;
+      }
+    });
+    console.log(scores);
+    for (var i = 0; i < 3; i++){
+      var node = document.createElement("li");
+      var textnode = document.createTextNode(scores[i]);
+      node.appendChild(textnode);
+      document.getElementById("lead").appendChild(node);
+    }
+  }
+  if(document.title == 'Music Quiz'){
+    imageGrid.populate();
+    imageGrid.guessBtn.addEventListener('click',(e) => {
+        imageGrid.checkAnswer();
+    });
+  } else {
+    leaderboard.printScores();
+  }
+
 });
