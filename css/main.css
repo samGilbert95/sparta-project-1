@@ -18,13 +18,13 @@
 
 .row {
 	display: block;
-  height: 30px;
+  height: 60px;
 }
 
 .block{
-  height: 30px;
+  height: 60px;
   display: inline-block;
-  width: 30px;
+  width: 60px;
   background-color: black;
   list-style: none;
   margin: 0px;
@@ -32,9 +32,9 @@
 }
 
 .blockInv{
-  height: 30px;
+  height: 60px;
   display: inline-block;
-  width: 30px;
+  width: 60px;
   list-style: none;
   margin: 0px;
   padding: 0px;
