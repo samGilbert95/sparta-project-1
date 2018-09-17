@@ -11,6 +11,10 @@
   transform: translateY(-270px);
 }
 
+#score{
+  transform: translateY(-260px);
+}
+
 #albumImg{
   border: 20px border red;
 }
