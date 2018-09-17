@@ -2,6 +2,11 @@ document.addEventListener('DOMContentLoaded',() => {
   const gridArea = document.getElementById('gridSect');
   let gridArray = [];
   let removed = [];
+  let timer = 0;
+  let songCount = 0;
+  let songName = '';
+  let dispSong = parseInt(songCount) + 1;
+  const songMax = 5;
   let songArray = [
     ["Adele","rolling in the deep","images/adele21.png","Adele.mp3"],
     ["George Ezra","shotgun","images/shotgun.jpeg","Ezra.mp3"],
@@ -15,29 +20,31 @@ document.addEventListener('DOMContentLoaded',() => {
     // ["Adele","Rolling In The Deep","images/adele21.png","Adele.mp3"],
   ];
   let score = 0;
-  let songName = '';
-
   const imageGrid = new Object();
 
   imageGrid.guessBtn = document.getElementById('guessBtn');
 
+
+  imageGrid.nextSong = () => {
+    $('.row').remove();
+    gridArray = [];
+    removed = [];
+    clearInterval(timer);
+    imageGrid.populate();
+  }
   // create a large grid over the album imageGrid
   // This will be the baseline at the start of the game
   // also calls get song to display img and sound
-  imageGrid.nextSong = () => {
-    
-  }
-
   imageGrid.populate = () => {
     for (let i = 0;i <10;i++){
       const newBlock = document.createElement('div');
       newBlock.setAttribute('class','row');
       gridArea.appendChild(newBlock);
       for (var j = 0; j< 10;j++){
-        const test = document.createElement('div');
-        test.setAttribute('class','block');
-        newBlock.appendChild(test);
-        gridArray.push(test);
+        const newElement = document.createElement('div');
+        newElement.setAttribute('class','block');
+        newBlock.appendChild(newElement);
+        gridArray.push(newElement);
       }
     }
     imageGrid.getSong();
@@ -48,15 +55,16 @@ document.addEventListener('DOMContentLoaded',() => {
     let rand = Math.floor(Math.random()*songArray.length);
     let randArtist = songArray[rand][0];
     let randSongName = songArray[rand][1];
-    songName = randSongName;
     let randSongImg = songArray[rand][2];
     let randSongMp3 = songArray[rand][3];
+    const stage = document.getElementById('stage');
     const music = document.getElementById('musicPlayer');
     const cover = document.getElementById('albumArea');
     const songname = document.getElementById('songNameTest');
     music.setAttribute("src","mp3/"+randSongMp3);
     cover.setAttribute("src",randSongImg);
-    songname.innerHTML = randSongName + ' by ' + randArtist;
+    songName = randSongName;
+    stage.innerHTML = "Song " + dispSong + " of " + songMax;
     music.play();
     imageGrid.deleteRand();
   }
@@ -65,7 +73,7 @@ document.addEventListener('DOMContentLoaded',() => {
   // will need 2d array of all block objects
   // function on loop set to time delay
   imageGrid.deleteRand= () => {
-    setInterval(function () {
+    timer = setInterval(function () {
       let rand = Math.floor(Math.random()*100);
       if (removed.indexOf(rand) == -1) {
         removed.push(rand);
@@ -81,21 +89,28 @@ document.addEventListener('DOMContentLoaded',() => {
   //if wrong, display answer and make score flash red
   // delay for 4 seconds then start new song.
   imageGrid.checkAnswer = () => {
-    console.log('works');
+    songCount++;
     let message = document.getElementById('score');
     message.innerHTML = 'Score: ' + score;
     let guess = document.getElementById('guess');
-    console.log(guess.value);
     if (guess.value.toLowerCase() == songName){
+      console.log('Correct!');
       score++;
       message.innerHTML = 'Score: ' + score;
     } else {
       console.log('Incorrect!');
     }
+    if (songCount === songMax){
+      alert(`You Scored ${score}`);
+      setTimeout(function(){
+        window.location.replace('index.html');
+      }, 3000);
+    } else {
     setTimeout(function(){
       imageGrid.nextSong();
-    }, 5000);
+    }, 1000);
   }
+}
 
   imageGrid.populate();
   imageGrid.guessBtn.addEventListener('click',(e) => {
