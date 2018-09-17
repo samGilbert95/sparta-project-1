@@ -7,6 +7,10 @@
   width: 300px;
 }
 
+#answers{
+  transform: translateY(-270px);
+}
+
 #albumImg{
   border: 20px border red;
 }
@@ -18,13 +22,13 @@
 
 .row {
 	display: block;
-  height: 60px;
+  height: 30px;
 }
 
 .block{
-  height: 60px;
+  height: 30px;
   display: inline-block;
-  width: 60px;
+  width: 30px;
   background-color: black;
   list-style: none;
   margin: 0px;
@@ -32,9 +36,9 @@
 }
 
 .blockInv{
-  height: 60px;
+  height: 30px;
   display: inline-block;
-  width: 60px;
+  width: 30px;
   list-style: none;
   margin: 0px;
   padding: 0px;
@@ -42,8 +46,7 @@
 }
 
 #gridSect{
-  position: relative;
-  top:-305px;
+  transform: translateY(-305px);
   left: 0px;
 }
 
