@@ -1,0 +1,64 @@
+#img{
+  margin: 50px auto;
+  text-align: center;
+  display: inline-flex;
+  border:2px solid black;
+  height:300px;
+  width: 300px;
+}
+
+#answers{
+  transform: translateY(-270px);
+}
+
+#score{
+  transform: translateY(-260px);
+}
+
+#albumImg{
+  border: 20px border red;
+}
+
+#blockUl{
+  margin: 0px;
+  padding: 0px;
+}
+
+.row {
+	display: block;
+  height: 30px;
+}
+
+.block{
+  height: 30px;
+  display: inline-block;
+  width: 30px;
+  background-color: black;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.blockInv{
+  height: 30px;
+  display: inline-block;
+  width: 30px;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  background-color: transparent;
+}
+
+#gridSect{
+  transform: translateY(-305px);
+  left: 0px;
+}
+
+#albumArea{
+  height: 300px;
+  width: 300px;
+}
+
+.block:hover{
+  background-color: transparent;
+}
