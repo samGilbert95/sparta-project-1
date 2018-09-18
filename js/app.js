@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded',() => {
   //============================OBJDEFINITIONS=====================
   const imageGrid = new Object();
   const leaderboard = new Object();
-
+  const styles = new Object();
   //============================IMAGEGRID==========================
 
   imageGrid.guessBtn = document.getElementById('guessBtn');
@@ -200,5 +200,40 @@ document.addEventListener('DOMContentLoaded',() => {
         leaderboard.clearLead();
     });
   }
+
+  // =================STYLE BUTTONS======================
+  styles.info = document.getElementById('inst');
+  styles.infoBack = document.getElementById('return');
+
+  styles.showInfo = () => {
+    const menuSec = document.getElementsByClassName('menuBtn');
+    console.log(menuSec);
+    const content = document.getElementById('instructTest');
+    const barrier = document.getElementById('container');
+    for (var i = 0; i < menuSec.length; i++) {
+      menuSec[i].setAttribute('style','height:0px; margin:0px;');
+    }
+    barrier.setAttribute('style','visibility:hidden;');
+    content.setAttribute('style','visibility:visible');
+  };
+
+  styles.returnInfo = () => {
+    const menuSec = document.getElementsByClassName('menuBtn');
+    console.log(menuSec);
+    const content = document.getElementById('instructTest');
+    const barrier = document.getElementById('container');
+    for (var i = 0; i < menuSec.length; i++) {
+      menuSec[i].setAttribute('style','height:50px; margin:auto; margin-top:35px;');
+    }
+    barrier.setAttribute('style','visibility:visible;');
+    content.setAttribute('style','visibility:hidden');
+  };
+
+  styles.info.addEventListener('click',(e) => {
+      styles.showInfo();
+  });
+  styles.infoBack.addEventListener('click',(e) => {
+      styles.returnInfo();
+  });
 
 });

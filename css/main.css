@@ -10,7 +10,6 @@ body{
   height:300px;
   width: 300px;
 }
-
 #myVideo{
   position: fixed;
   top: 50%;
@@ -25,6 +24,37 @@ body{
 
 a{
   text-decoration: none;
+}
+
+#instructTest{
+  margin: 20px;
+  margin-top: 40px;
+  visibility: hidden;
+  color:black;
+  text-align: center;
+}
+
+.sectionHead{
+  text-decoration: underline;
+}
+
+#returnBtn{
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  width: 80%;
+  height: 50px;
+  border: 1px solid red;
+}
+
+#container{
+  position: inherit;
+  height: 100%;
+  width: 100%;
+  transform: translateY(-15px);
 }
 
 a:visited{
@@ -50,7 +80,7 @@ li{
 }
 
 #menu{
-  height: 300px;
+  height: 400px;
   transform: translateY(150px);
   margin: auto;
   width: 40%;
@@ -64,13 +94,19 @@ h1.menuBtn{
   border:0px;
 }
 
-.menuBtn{
+p{
+  margin: 20px;
+  margin-bottom: 40px;
+}
+
+.menuBtn,#inst,#return{
   text-align: center;
   justify-content: center;
   margin: auto;
   display: flex;
   flex-direction: column;
-  margin-top: 15px;
+  color:black;
+  margin-top: 35px;
   width: 80%;
   height: 50px;
   border: 1px solid red;
