@@ -3,8 +3,10 @@ document.addEventListener('DOMContentLoaded',() => {
   const gridArea = document.getElementById('gridSect');
   const success = document.getElementById('correct');
   const fail = document.getElementById('wrong');
+  const guess = document.getElementById('guess');
   let gridArray = [];
   let removed = [];
+  let usedSong = '';
   let timer = 0;
   let songCount = 0;
   let timecount = 0;
@@ -18,14 +20,14 @@ document.addEventListener('DOMContentLoaded',() => {
     ["Marshmello","happier","images/Marshmello.png","marsh.mp3"],
     ["Childish Gambino","feels like summer","images/gambino.jpg","gambino.mp3"],
     ["Foster The People","pumped up kicks","images/foster.png","kicks.mp3"],
-    ["Gorillaz","humility","images/gorillaz.jpg","gorillaz.mp3"]
+    ["Gorillaz","humility","images/gorillaz.jpg","gorillaz.mp3"],
     ["U2","beautiful day","images/u2.jpg","day.mp3"],
     ["Gnarls Barkley","crazy","images/crazy.JPG","crazy.mp3"],
     ["Daft Punk","one more time","images/daft.jpg","daft.mp3"],
     ["The Walkmen","the rat","images/rat.jpg","rat.mp3"],
     ["Capital Cities","safe and sound","images/safe.jpg","safe.mp3"],
     ["Pharell Williams","happy","images/happy.jpg","happy.mp3"],
-    ["Mark Ronson","uptown funk","images/funk.jpeg","funk.mp3"],
+    ["Mark Ronson","uptown funk","images/funk.jpeg","funk.mp3"]
   ];
   let score = 0;
   //============================OBJDEFINITIONS=====================
@@ -39,15 +41,26 @@ document.addEventListener('DOMContentLoaded',() => {
     $('.row').remove();
     gridArray = [];
     removed = [];
+    guess.value = '';
     timecount = 0;
     console.log('Next Song');
+    imageGrid.removeUsed();
     clearInterval(timer);
     imageGrid.populate();
+  }
+
+  imageGrid.removeUsed = () => {
+    for (let i = 0; i<songArray.length;i++){
+      if (usedSong === songArray[i][1]){
+        songArray.splice(i,1);
+      }
+    }
   }
   // create a large grid over the album imageGrid
   // This will be the baseline at the start of the game
   // also calls get song to display img and sound
   imageGrid.populate = () => {
+    console.log(songArray);
     for (let i = 0;i <10;i++){
       const newBlock = document.createElement('div');
       newBlock.setAttribute('class','row');
@@ -71,6 +84,7 @@ document.addEventListener('DOMContentLoaded',() => {
     let randSongName = songArray[rand][1];
     let randSongImg = songArray[rand][2];
     let randSongMp3 = songArray[rand][3];
+    usedSong = randSongName;
     const stage = document.getElementById('stage');
     const music = document.getElementById('musicPlayer');
     const cover = document.getElementById('albumArea');
@@ -96,7 +110,6 @@ document.addEventListener('DOMContentLoaded',() => {
         element.classList.remove('block');
         element.classList.add('blockInv');
       }
-      console.log(timer);
       timecount++;
     }, 1000);
   }
@@ -117,7 +130,6 @@ document.addEventListener('DOMContentLoaded',() => {
     songCount++;
     let message = document.getElementById('score');
     message.innerHTML = 'Score: ' + score;
-    let guess = document.getElementById('guess');
     if (guess.value.toLowerCase() == songName){
       console.log('Correct!');
       score = score + (100-(timecount*3));
@@ -130,10 +142,11 @@ document.addEventListener('DOMContentLoaded',() => {
     if (songCount >= songMax){
       console.log(score);
       const name = prompt('Enter Your Name');
+      alert('You Scored: ' + score);
       localStorage.setItem(name,score);
       setTimeout(function(){
         document.location.href = 'index.html';
-      }, 10);
+      }, 1000);
     }
     setTimeout(function(){
       imageGrid.nextSong();
@@ -159,6 +172,7 @@ document.addEventListener('DOMContentLoaded',() => {
 
   leaderboard.clearLead = () => {
     localStorage.clear();
+    location.reload();
   }
 
   leaderboard.printScores = () => {
