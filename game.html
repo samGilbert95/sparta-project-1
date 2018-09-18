@@ -11,19 +11,23 @@
 </head>
 <body>
   <h1 id="stage">Game</h1>
-  <section id="albumImg">
-    <img id="albumArea" src="images/adele21.png" alt="testImg">
-    <section id='gridSect'>
+  <section id="albumParent">
+    <section id="albumImg">
+      <img id="albumArea" src="images/adele21.png" alt="testImg">
+      <section id='gridSect'>
+      </section>
+      <audio id="musicPlayer" src=""></audio>
     </section>
-    <audio id="musicPlayer" src=""></audio>
   </section>
+
   <section id="answers">
     <h3 id="correct">Correct</h3>
     <h3 id="wrong">Wrong</h3>
     <input type="text" id="guess" placeholder="Enter Song Name Here"></input>
     <input type="submit" name="Make A Guess" id="guessBtn"></input>
+    <button id="back"><a href="index.html">Back</a></button>
   </section>
   <section id="score">Score: 0</section>
-  <button><a href="index.html">Back</a></button>
+
 </body>
 </html>
