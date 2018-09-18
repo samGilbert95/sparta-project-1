@@ -7,6 +7,14 @@
   width: 300px;
 }
 
+#correct{
+  color: Green;
+}
+
+#wrong {
+  color: red;
+}
+
 #answers{
   transform: translateY(-270px);
 }
