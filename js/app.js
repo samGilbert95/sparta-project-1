@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded',() => {
   const success = document.getElementById('correct');
   const fail = document.getElementById('wrong');
   const guess = document.getElementById('guess');
+  const back = document.getElementById('gameBack');
+  const scoreAnim = document.getElementById('score');
   let gridArray = [];
   let removed = [];
   let usedSong = '';
@@ -43,6 +45,8 @@ document.addEventListener('DOMContentLoaded',() => {
     removed = [];
     guess.value = '';
     timecount = 0;
+    back.setAttribute('style','animation:none');
+    scoreAnim.setAttribute('style','animation:none');
     imageGrid.removeUsed();
     clearInterval(timer);
     imageGrid.populate();
@@ -70,8 +74,6 @@ document.addEventListener('DOMContentLoaded',() => {
         gridArray.push(newElement);
       }
     }
-    success.setAttribute('style','visibility:hidden');
-    fail.setAttribute('style','visibility:hidden');
     imageGrid.getSong();
   }
 
@@ -109,15 +111,16 @@ document.addEventListener('DOMContentLoaded',() => {
         element.classList.add('blockInv');
       }
       timecount++;
-    }, 1000);
+    }, 500);
   }
 
   imageGrid.success = () => {
-    success.setAttribute('style','visibility:visable');
+    back.setAttribute('style','animation:flashCorrect 1s');
+    scoreAnim.setAttribute('style','animation:scorePulse 1s');
   }
 
   imageGrid.fail = () => {
-    fail.setAttribute('style','visibility:visable');
+    back.setAttribute('style','animation:flashFail 1s');
   }
 
   //checks if user input is correct.
@@ -129,7 +132,7 @@ document.addEventListener('DOMContentLoaded',() => {
     let message = document.getElementById('score');
     message.innerHTML = 'Score: ' + score;
     if (guess.value.toLowerCase() == songName){
-      score = score + (100-(timecount*3));
+      score = score + (100-(timecount*2));
       imageGrid.success();
       message.innerHTML = 'Score: ' + score;
     } else {
@@ -141,24 +144,36 @@ document.addEventListener('DOMContentLoaded',() => {
       localStorage.setItem(name,score);
       setTimeout(function(){
         document.location.href = 'index.html';
-      }, 100);
+      }, 1000);
     }
     setTimeout(function(){
       imageGrid.nextSong();
-    }, 1000);
+    }, 2000);
   }
 
   // ======================LEADERBOARD===============================
 
   // Sorts array by score value and prints out to Leaderboard
+  leaderboard.fillArray = () => {
+    for (var i = 0; i < 5; i++) {
+      let key = 'Fill Score';
+      let value = 0;
+      let keypair = [];
+      keypair.push(key);
+      keypair.push(value);
+      scores.push(keypair);
+      //console.log(scores[i]);
+    }
+  }
+
   leaderboard.clearBtn = document.getElementById('clearStore');
   leaderboard.getScores = () => {
     for (var i = 0; i < localStorage.length; i++){
-      var key = localStorage.key(i);
-      var value = localStorage[key];
-      var keypair = [];
+      let key = localStorage.key(i);
+      let value = localStorage[key];
+      let keypair = [];
       keypair.push(key);
-      keypair.push(value);;
+      keypair.push(value);
       scores.push(keypair);
     }
   }
@@ -171,12 +186,26 @@ document.addEventListener('DOMContentLoaded',() => {
   leaderboard.printScores = () => {
     leaderboard.getScores();
     let scoreGet = scores;
+    console.log(scoreGet);
     scoreGet.sort(function(a,b){
-        return b[1] - a[1];
+      return b[1] - a[1];
     });
     for (var i = 0; i < 5; i++){
       var node = document.createElement("li");
-      var textnode = document.createTextNode(scores[i]);
+      var textnode = document.createTextNode(scores[i][0] + ": " + scores[i][1]);
+      switch (i) {
+        case 0:
+        node.setAttribute('class','gold');
+        break;
+        case 1:
+        node.setAttribute('class','silver');
+        break;
+        case 2:
+        node.setAttribute('class','bronze');
+        break;
+        default:
+        break;
+      }
       node.appendChild(textnode);
       document.getElementById("lead").appendChild(node);
     }
@@ -184,12 +213,13 @@ document.addEventListener('DOMContentLoaded',() => {
   if(document.title == 'Music Quiz'){
     imageGrid.populate();
     imageGrid.guessBtn.addEventListener('click',(e) => {
-        imageGrid.checkAnswer();
+      imageGrid.checkAnswer();
     });
   } else if (document.title == 'Main') {
+    leaderboard.fillArray();
     leaderboard.printScores();
     leaderboard.clearBtn.addEventListener('click',(e) => {
-        leaderboard.clearLead();
+      leaderboard.clearLead();
     });
   }
 
@@ -233,6 +263,10 @@ document.addEventListener('DOMContentLoaded',() => {
     content.setAttribute('style','visibility:visible');
   };
 
+  styles.loadIn = () => {
+    back.setAttribute('style','animation: fadeIn 1s');
+  }
+
   styles.returnLead = () => {
     const menuSec = document.getElementsByClassName('menuBtn');
     const content = document.getElementById('leadSect');
@@ -245,16 +279,15 @@ document.addEventListener('DOMContentLoaded',() => {
   };
 
   styles.info.addEventListener('click',(e) => {
-      styles.showInfo();
+    styles.showInfo();
   });
   styles.infoBack.addEventListener('click',(e) => {
-      styles.returnInfo();
+    styles.returnInfo();
   });
   styles.lead.addEventListener('click',(e) => {
-      styles.showLead();
+    styles.showLead();
   });
   styles.leadBack.addEventListener('click',(e) => {
-      styles.returnLead();
+    styles.returnLead();
   });
-
 });

@@ -8,8 +8,8 @@
   <script src="js/app.js" charset="utf-8"></script>
   <title>Main</title>
 </head>
-<body>
-  <video autoplay muted loop id="myVideo">
+<body id="mainBod">
+  <video autoplay loop onloadstart="this.volume=0.3" id="myVideo">
     <source src="images/menuBack.mp4" type="video/mp4">
   </video>
   <section id="menu">
