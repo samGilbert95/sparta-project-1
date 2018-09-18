@@ -3,11 +3,11 @@ document.addEventListener('DOMContentLoaded',() => {
   let gridArray = [];
   let removed = [];
   let timer = 0;
-  let songCount = 3;
+  let songCount = 0;
   let songName = '';
   let songMax = 5;
   let scores = [];
-  let dispSong = parseInt(songCount) + 1;
+  let dispSong = songCount + 1;
   let songArray = [
     ["Adele","rolling in the deep","images/adele21.png","Adele.mp3"],
     ["George Ezra","shotgun","images/shotgun.jpeg","Ezra.mp3"],
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded',() => {
     }
     setTimeout(function(){
       imageGrid.nextSong();
-    }, 1000);
+    }, 10);
   }
 
   // Sorts array by score value and prints out to Leaderboard
