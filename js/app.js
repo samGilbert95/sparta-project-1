@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded',() => {
     removed = [];
     guess.value = '';
     timecount = 0;
-    console.log('Next Song');
     imageGrid.removeUsed();
     clearInterval(timer);
     imageGrid.populate();
@@ -60,7 +59,6 @@ document.addEventListener('DOMContentLoaded',() => {
   // This will be the baseline at the start of the game
   // also calls get song to display img and sound
   imageGrid.populate = () => {
-    console.log(songArray);
     for (let i = 0;i <10;i++){
       const newBlock = document.createElement('div');
       newBlock.setAttribute('class','row');
@@ -131,16 +129,13 @@ document.addEventListener('DOMContentLoaded',() => {
     let message = document.getElementById('score');
     message.innerHTML = 'Score: ' + score;
     if (guess.value.toLowerCase() == songName){
-      console.log('Correct!');
       score = score + (100-(timecount*3));
       imageGrid.success();
       message.innerHTML = 'Score: ' + score;
     } else {
-      console.log('Incorrect!');
       imageGrid.fail();
     }
     if (songCount >= songMax){
-      console.log(score);
       const name = prompt('Enter Your Name');
       alert('You Scored: ' + score);
       localStorage.setItem(name,score);
@@ -163,8 +158,7 @@ document.addEventListener('DOMContentLoaded',() => {
       var value = localStorage[key];
       var keypair = [];
       keypair.push(key);
-      keypair.push(value);
-      console.log(keypair);
+      keypair.push(value);;
       scores.push(keypair);
     }
   }
@@ -177,12 +171,10 @@ document.addEventListener('DOMContentLoaded',() => {
   leaderboard.printScores = () => {
     leaderboard.getScores();
     let scoreGet = scores;
-    console.log(scoreGet);
     scoreGet.sort(function(a,b){
         return b[1] - a[1];
     });
-    console.log(scoreGet);
-    for (var i = 0; i < localStorage.length; i++){
+    for (var i = 0; i < 5; i++){
       var node = document.createElement("li");
       var textnode = document.createTextNode(scores[i]);
       node.appendChild(textnode);
@@ -194,7 +186,7 @@ document.addEventListener('DOMContentLoaded',() => {
     imageGrid.guessBtn.addEventListener('click',(e) => {
         imageGrid.checkAnswer();
     });
-  } else if (document.title == 'Leaderboard') {
+  } else if (document.title == 'Main') {
     leaderboard.printScores();
     leaderboard.clearBtn.addEventListener('click',(e) => {
         leaderboard.clearLead();
@@ -203,11 +195,12 @@ document.addEventListener('DOMContentLoaded',() => {
 
   // =================STYLE BUTTONS======================
   styles.info = document.getElementById('inst');
-  styles.infoBack = document.getElementById('return');
+  styles.infoBack = document.getElementById('returnInfo');
+  styles.lead = document.getElementById('leadBtn');
+  styles.leadBack = document.getElementById('returnLead');
 
   styles.showInfo = () => {
     const menuSec = document.getElementsByClassName('menuBtn');
-    console.log(menuSec);
     const content = document.getElementById('instructTest');
     const barrier = document.getElementById('container');
     for (var i = 0; i < menuSec.length; i++) {
@@ -219,8 +212,30 @@ document.addEventListener('DOMContentLoaded',() => {
 
   styles.returnInfo = () => {
     const menuSec = document.getElementsByClassName('menuBtn');
-    console.log(menuSec);
     const content = document.getElementById('instructTest');
+    const barrier = document.getElementById('container');
+    for (var i = 0; i < menuSec.length; i++) {
+      menuSec[i].setAttribute('style','height:50px; margin:auto; margin-top:35px;');
+    }
+    barrier.setAttribute('style','visibility:visible;');
+    content.setAttribute('style','visibility:hidden');
+  };
+
+  styles.showLead = () => {
+    const menuSec = document.getElementsByClassName('menuBtn');
+    const content = document.getElementById('leadSect');
+    const barrier = document.getElementById('container');
+    for (var i = 0; i < menuSec.length; i++) {
+      menuSec[i].setAttribute('style','height:0px; margin:0px;');
+    }
+    barrier.setAttribute('style','visibility:hidden;');
+    document.getElementById('instructTest').setAttribute('style','margin:0px; height:0px;')
+    content.setAttribute('style','visibility:visible');
+  };
+
+  styles.returnLead = () => {
+    const menuSec = document.getElementsByClassName('menuBtn');
+    const content = document.getElementById('leadSect');
     const barrier = document.getElementById('container');
     for (var i = 0; i < menuSec.length; i++) {
       menuSec[i].setAttribute('style','height:50px; margin:auto; margin-top:35px;');
@@ -234,6 +249,12 @@ document.addEventListener('DOMContentLoaded',() => {
   });
   styles.infoBack.addEventListener('click',(e) => {
       styles.returnInfo();
+  });
+  styles.lead.addEventListener('click',(e) => {
+      styles.showLead();
+  });
+  styles.leadBack.addEventListener('click',(e) => {
+      styles.returnLead();
   });
 
 });
