@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded',() => {
       localStorage.setItem(name,score);
       setTimeout(function(){
         document.location.href = 'index.html';
-      }, 1000);
+      }, 100);
     }
     setTimeout(function(){
       imageGrid.nextSong();
@@ -158,16 +158,15 @@ document.addEventListener('DOMContentLoaded',() => {
   // Sorts array by score value and prints out to Leaderboard
   leaderboard.clearBtn = document.getElementById('clearStore');
   leaderboard.getScores = () => {
-    console.log('working');
     for (var i = 0; i < localStorage.length; i++){
       var key = localStorage.key(i);
       var value = localStorage[key];
       var keypair = [];
       keypair.push(key);
       keypair.push(value);
+      console.log(keypair);
       scores.push(keypair);
     }
-    console.log(scores);
   }
 
   leaderboard.clearLead = () => {
@@ -177,15 +176,12 @@ document.addEventListener('DOMContentLoaded',() => {
 
   leaderboard.printScores = () => {
     leaderboard.getScores();
-    scores.sort(function(a,b){
-      if (a[1] < b[1]){
-        return 1;
-      } else if (a[1] > b[1]) {
-        return -1;
-      } else{
-        return 0;
-      }
+    let scoreGet = scores;
+    console.log(scoreGet);
+    scoreGet.sort(function(a,b){
+        return b[1] - a[1];
     });
+    console.log(scoreGet);
     for (var i = 0; i < localStorage.length; i++){
       var node = document.createElement("li");
       var textnode = document.createTextNode(scores[i]);
