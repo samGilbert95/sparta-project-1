@@ -7,6 +7,19 @@
   width: 300px;
 }
 
+h1{
+  text-align: center;
+  margin: auto;
+}
+
+.menuBtn{
+  text-align: center;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
 #correct{
   color: Green;
 }
