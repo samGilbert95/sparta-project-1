@@ -32,11 +32,11 @@ document.addEventListener('DOMContentLoaded',() => {
     ["Mark Ronson","uptown funk","images/funk.jpeg","funk.mp3"]
   ];
   let score = 0;
-  //============================OBJDEFINITIONS=====================
+  //============================OBJ DEFINITIONS=====================
   const imageGrid = new Object();
   const leaderboard = new Object();
   const styles = new Object();
-  //============================IMAGEGRID==========================
+  //============================IMAGE GRID==========================
 
   imageGrid.guessBtn = document.getElementById('guessBtn');
   imageGrid.nextSong = () => {
