@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/app.js" charset="utf-8"></script>
+  <title>Main</title>
+</head>
+<body id="mainBod">
+  <video autoplay loop onloadstart="this.volume=0.3" id="myVideo">
+    <source src="images/menuBack.mp4" type="video/mp4">
+  </video>
+  <section id="menu">
+    <section id="container">
+      <h1 class="menuBtn"> Music Quiz</h1>
+      <a href="game.html" class="menuBtn">Game</a>
+      <a id="inst" class="menuBtn">Instructions</a>
+      <a id="leadBtn"class="menuBtn">Leaderboard</a>
+       <!-- href="lead.html"  -->
+      <section id="instructTest">
+        <h3 class="sectionHead">Instructions</h3>
+        <div>
+          <p>When the game loads, you'll have to guess the name
+          of the song being played.</p>
+        </div>
+        <div>
+          <p> As time passes, pieces of the album cover will be
+          revealed. However, the longer you wait, the less points you
+          will score.</p>
+        </div>
+        <div>
+          <p>When you're sure of your answer, press the button to
+          stop the timer and get your points. A wrong answer is 0
+          points so think carefully</p>
+        </div>
+        <a id='returnInfo'> Good Luck! </a>
+      </section>
+      <section id="leadSect">
+        <h3 class="sectionHead">Leaderboard</h3>
+        <ul id="lead"></ul>
+        <content id="leadBtns">
+          <a id="returnLead">Back</a>
+          <a id="clearStore"> Clear Leaderboard</a>
+        </content>
+      </section>
+    </section>
+  </section>
+</body>
+</html>

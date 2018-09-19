@@ -1,0 +1,285 @@
+/* ============ Tag Styles ================= */
+body{
+  margin: 30px;
+  height: 750px;
+}
+video{
+  volume: 0.1;
+}
+a{
+  text-decoration: none;
+  text-align: center;
+}
+h1{
+  text-align: center;
+  margin: auto;
+  color: black;
+  font-family: impact;
+}
+li{
+  list-style: none;
+  text-align: center;
+  margin: auto;
+  margin-right: 40px;
+  margin-top: 20px;
+}
+h1.menuBtn{
+  border:0px;
+}
+p{
+  margin: 20px;
+  margin-bottom: 30px;
+}
+a:visited{
+  text-decoration: none;
+  color: black;
+}
+h1.menuBtn{
+  font-size: 2em;
+}
+h1.menuBtn:hover{
+  background-color:white;
+  color: black;
+}
+/* ============ ID Styles ================= */
+
+#gridSect{
+  transform: translateY(-305px);
+  margin: auto;
+}
+#albumArea{
+  height: 300px;
+  width: 300px;
+}
+#img{
+  margin: 50px auto;
+  text-align: center;
+  display: inline-flex;
+  border:2px solid black;
+  height:300px;
+  width: 300px;
+}
+#myVideo{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+}
+#instructTest{
+  margin-top: 40px;
+  visibility: hidden;
+  color:black;
+  text-align: center;
+}
+#clearStore{
+  display: flex;
+  width: 200px;
+  margin: auto;
+  margin-top: 0px;
+  background-color: red;
+  text-align: center;
+  align-content: center;
+}
+#leadSect{
+  margin: 0px 20px;
+  visibility: hidden;
+  color:black;
+  text-align: center;
+  transform: translateY(-20px);
+}
+#returnBtn{
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  width: 80%;
+  height: 50px;
+  border: 1px solid red;
+}
+#container{
+  position: inherit;
+  height: 100%;
+  width: 100%;
+  transform: translateY(-15px);
+}
+#leadBtns {
+  margin: auto;
+}
+#menu{
+  position: relative;
+  height: 400px;
+  transform: translateY(150px);
+  margin: auto;
+  width: 40%;
+  border: 4px solid red;
+  background: rgba(255,255,255, 1);
+  color: #f1f1f1;
+  opacity: 0.8;
+}
+/* #clearStore,#returnInfo{
+  margin-top: 10px;
+} */
+#correct{
+  color: Green;
+  text-align: center;
+}
+#wrong {
+  color: red;
+  text-align: center;
+}
+#correct[style*="hidden"]{
+  height: 0px;
+  margin: 0px;
+}
+#wrong[style*="hidden"]{
+  height: 0px;
+  margin: 0px;
+}
+#gameBack{
+  background-color: lightgray;
+  animation: fadeIn 1s;
+}
+#mainBod{
+  animation: fadeIn .5s;
+}
+#score{
+  margin: auto;
+  text-align: center;
+  transform: translateY(-480px);
+  font-size: 1.3em;
+}
+#albumParent{
+  height: 300px;
+  width: 100%;
+  margin: auto;
+  margin-top: 50px;
+}
+#albumImg{
+  position: relative;
+  margin: auto;
+  height: 300px;
+  width: 300px;
+  border: 20px double red;
+}
+#answers{
+  position: relative;
+  display:block;
+  top:20px;
+  width: 300px;
+  margin: auto;
+  transform: translateY(50px);
+  margin-bottom: 20px;
+}
+#guess {
+  width: 80%;
+  height:30px;
+  margin-left: 30px;
+  text-align: center;
+}
+#guessBtn,#back{
+  width: 80%;
+  margin: auto;
+  margin-top: 5px;
+  margin-left: 30px;
+}
+#blockUl{
+  margin: 0px;
+  padding: 0px;
+}
+
+/* ============ Class Styles ================= */
+
+.sectionHead{
+  text-decoration: underline;
+}
+.gold{
+  color: #D4AF37;
+  font-size: 22px;
+}
+.silver{
+  color: #C0C0C0;
+  font-size: 20px;
+}
+.bronze{
+  color: #CD7F32;
+  font-size: 18px;
+}
+.menuBtn,#inst,#return,#returnLead,#clearStore,#returnInfo,#back{
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  color:black;
+  margin-top: 25px;
+  width: 80%;
+  height: 50px;
+  border: 1px solid red;
+}
+.menuBtn:hover,#inst:hover,#return:hover,#returnLead:hover
+,#clearStore:hover,#returnInfo:hover,#back:hover{
+  background-color: black;
+  color: white;
+}
+.row {
+  display: block;
+  height: 30px;
+  width: 300px;
+  margin: 0px;
+}
+.block{
+  height: 30px;
+  display: inline-block;
+  width: 30px;
+  background-color: black;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+.blockInv{
+  height: 30px;
+  display: inline-block;
+  width: 30px;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  background-color: transparent;
+}
+
+/* ============ Animations ================= */
+
+@-webkit-keyframes flashCorrect {
+  0% { background-color: lightgray; }
+  50% { background-color: green; }
+  100% { background-color: lightgray; }
+}
+@-webkit-keyframes flashFail {
+  0% { background-color: lightgray; }
+  50% { background-color: red; }
+  100% { background-color: lightgray; }
+}
+@-webkit-keyframes scorePulse {
+  0% { font-size: 1.3em;}
+  50% { font-size: 1.6em; }
+  100% { font-size: 1.3em; }
+}
+@-webkit-keyframes fadeIn {
+  0% { opacity: 0;}
+  10% { opacity: 0.1; }
+  20% { opacity: 0.2; }
+  30% { opacity: 0.3; }
+  40% { opacity: 0.4; }
+  50% { opacity: 0.5; }
+  60% { opacity: 0.6; }
+  70% { opacity: 0.7; }
+  80% { opacity: 0.8; }
+  90% { opacity: 0.9; }
+  100% { opacity: 1; }
+}
