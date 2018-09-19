@@ -186,7 +186,6 @@ document.addEventListener('DOMContentLoaded',() => {
   leaderboard.printScores = () => {
     leaderboard.getScores();
     let scoreGet = scores;
-    console.log(scoreGet);
     scoreGet.sort(function(a,b){
       return b[1] - a[1];
     });
