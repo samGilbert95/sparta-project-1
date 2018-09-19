@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded',() => {
   //============================IMAGE GRID==========================
 
   imageGrid.guessBtn = document.getElementById('guessBtn');
+  // Get the details for the next song and reset the board.
   imageGrid.nextSong = () => {
     $('.row').remove();
     gridArray = [];
@@ -51,7 +52,7 @@ document.addEventListener('DOMContentLoaded',() => {
     clearInterval(timer);
     imageGrid.populate();
   }
-
+  // Removes songs from songArray if they have already been played
   imageGrid.removeUsed = () => {
     for (let i = 0; i<songArray.length;i++){
       if (usedSong === songArray[i][1]){
@@ -114,11 +115,12 @@ document.addEventListener('DOMContentLoaded',() => {
     }, 500);
   }
 
+  // Flashes screen green when the answer is correct
   imageGrid.success = () => {
     back.setAttribute('style','animation:flashCorrect 1s');
     scoreAnim.setAttribute('style','animation:scorePulse 1s');
   }
-
+  // Flashes screen red when the answer is wrong
   imageGrid.fail = () => {
     back.setAttribute('style','animation:flashFail 1s');
   }
@@ -132,7 +134,7 @@ document.addEventListener('DOMContentLoaded',() => {
     let message = document.getElementById('score');
     message.innerHTML = 'Score: ' + score;
     if (guess.value.toLowerCase() == songName){
-      score = score + (100-(timecount*2));
+      score = score + (100-(Math.round(timecount*0.9)));
       imageGrid.success();
       message.innerHTML = 'Score: ' + score;
     } else {
@@ -152,7 +154,7 @@ document.addEventListener('DOMContentLoaded',() => {
   }
 
   // ======================LEADERBOARD===============================
-
+  leaderboard.clearBtn = document.getElementById('clearStore');
   // Sorts array by score value and prints out to Leaderboard
   leaderboard.fillArray = () => {
     for (var i = 0; i < 5; i++) {
@@ -162,11 +164,9 @@ document.addEventListener('DOMContentLoaded',() => {
       keypair.push(key);
       keypair.push(value);
       scores.push(keypair);
-      //console.log(scores[i]);
     }
   }
-
-  leaderboard.clearBtn = document.getElementById('clearStore');
+  // Fetch the array of scores in local storage
   leaderboard.getScores = () => {
     for (var i = 0; i < localStorage.length; i++){
       let key = localStorage.key(i);
@@ -177,12 +177,12 @@ document.addEventListener('DOMContentLoaded',() => {
       scores.push(keypair);
     }
   }
-
+  //clears the leaderboard by deleting local storage
   leaderboard.clearLead = () => {
     localStorage.clear();
     location.reload();
   }
-
+  // Sorts scores and prints them to the screen
   leaderboard.printScores = () => {
     leaderboard.getScores();
     let scoreGet = scores;
@@ -209,6 +209,7 @@ document.addEventListener('DOMContentLoaded',() => {
       document.getElementById("lead").appendChild(node);
     }
   }
+  // Run imageGrid if game screen, else run leaderboard
   if(document.title == 'Music Quiz'){
     imageGrid.populate();
     imageGrid.guessBtn.addEventListener('click',(e) => {
@@ -227,7 +228,7 @@ document.addEventListener('DOMContentLoaded',() => {
   styles.infoBack = document.getElementById('returnInfo');
   styles.lead = document.getElementById('leadBtn');
   styles.leadBack = document.getElementById('returnLead');
-
+  // Code to allow leaderboard and instructions on the menu screen
   styles.showInfo = () => {
     const menuSec = document.getElementsByClassName('menuBtn');
     const content = document.getElementById('instructTest');
