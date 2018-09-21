@@ -7,28 +7,28 @@ This project tasked me with creating a game which tested the skills which we had
 
 ### Tech used
 ---
-#####Languages
+##### Languages
 This project utilised basic HTML5 and CSS3 to estabish page structure and page styling respectively. Javascript was used to manage game logic. Git was used to traverse file structures and connect with GitHub
-#####Environments
+##### Environments
 The majority of the programming was done inside the Atom text editor. MacDown was used in the creation of this ReadMe. GitHub was used to establish development branches and version control. The terminal was also used to traverse branches and set up live test servers.
 
-###Challenges
+### Challenges
 ---
 As a part of styling the main page, I decided to move as many seperate html pages into the Index as possible. This presented several challenges in fitting all of the elements on the screen, and required that I shrink elements which were not in use.
 
-###Takeaways
+### Takeaways
 ---
 In general, I am surprised by how fast progress was on this project. In using trello and designing mockup designs before begining the assignment, I was able to think clearly and carefully about what needed to be done. This meant that there was less time spent working on trivial persuits or wondering what to do next.
 
-###GitHub links
+### GitHub links
 GitHub Repo: <https://github.com/samGilbert95/sparta-project-1/>
 
 Github Pages: <https://samgilbert95.github.io/sparta-project-1/>
 
 ###Codeblocks
 ---
-#####HTML Example Code
-######Leaderboard In Index
+##### HTML Example Code
+###### Leaderboard In Index
 ```html
    <section id="menu">
     <section id="container">
@@ -69,8 +69,8 @@ Github Pages: <https://samgilbert95.github.io/sparta-project-1/>
     </section>
   </section>
 ```
-#####CSS Example Code
-######Fullscreen Menu Video
+##### CSS Example Code
+###### Fullscreen Menu Video
 ```css
 #myVideo{
   position: fixed;
@@ -83,7 +83,7 @@ Github Pages: <https://samgilbert95.github.io/sparta-project-1/>
   transform: translate(-50%, -50%);
 }
 ```
-######Animation Examples
+###### Animation Examples
 ```css
 @-webkit-keyframes flashCorrect {
 	0% { background-color: lightgray; }
@@ -97,8 +97,8 @@ Github Pages: <https://samgilbert95.github.io/sparta-project-1/>
 	100% { font-size: 1.3em; }
 }
 ```
-#####Javascript Example Code
-######Populate Grid
+##### Javascript Example Code
+###### Populate Grid
 ```javascript
 imageGrid.populate = () => {
     for (let i = 0;i <10;i++){
@@ -116,7 +116,7 @@ imageGrid.populate = () => {
   }
 ```
 
-###Download Instructions
+### Download Instructions
 ----
 These instructions assume that the user has a GitHub Account and Git installed on their terminal. In case these assumptions are incorrect, resoruces for installation are provided below.
 
@@ -125,10 +125,8 @@ Git Installation:<https://gist.github.com/derhuerst/1b15ff4652a867391f03>
 GitHub Signup: <https://services.github.com/on-demand/intro-to-github/create-github-account>
 
 ##### Step 1: Clone Repo
--
-Go to <https://github.com/samGilbert95/sparta-bootstrap-page-copy> and
+Go to <https://github.com/samGilbert95/sparta-project-1> and
 ##### Step 2:	CD into terminal
--
 Copy the project into the chosen directory using the Git Clone Command
 
 ---
